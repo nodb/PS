@@ -1,4 +1,6 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 abstract class MagicSquare {
 	protected int[][] magic;
@@ -238,9 +240,12 @@ class SixMagicSquare extends MagicSquare {
 }
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		// Read input using StringTokenizer
+		int n = Integer.parseInt(br.readLine());
+		
 		MagicSquare magic = null;
 		if (n % 2 == 1) {
 			magic = new OddMagicSquare(n);
@@ -251,6 +256,7 @@ public class Main {
 		}
 		magic.make();
 		magic.print();
+		
+		br.close();
 	}	
 }
-

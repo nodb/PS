@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 28856 KB, 시간: 816 ms
+메모리: 25808 KB, 시간: 712 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2025년 1월 17일 14:42:01
+2025년 2월 4일 21:35:32
 
 ### 문제 설명
 
@@ -20,7 +20,7 @@
 
 <p>예를 들면, 다음은 3*3 마방진 중 하나이다. 가로줄, 세로줄, 대각선의 합이 모두 15로 같다는 것을 알 수 있다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="height: 135px; width: 137px;"></p>
+<p style="text-align: center;"><img alt="" src="https://www.acmicpc.net/upload/201004/mmm.JPG" style="height: 135px; width: 137px;"></p>
 
 <p>N이 주어졌을 때 N*N 마방진을 하나 구해 보자.</p>
 
