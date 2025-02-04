@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
 
 abstract class MagicSquare {
 	protected int[][] magic;
@@ -11,13 +13,15 @@ abstract class MagicSquare {
 		magic = new int[n][n];
 	}
 
-	public void print() {
+	public String print() {
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				System.out.print(magic[i][j] + " ");
+				sb.append(magic[i][j]).append(" ");
 			}
-			System.out.println();
+			sb.append("\n");
 		}
+		return sb.toString();
 	}
 
 	private Object isMagic() {
@@ -240,10 +244,10 @@ class SixMagicSquare extends MagicSquare {
 }
 
 public class Main {
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		// Read input using StringTokenizer
 		int n = Integer.parseInt(br.readLine());
 		
 		MagicSquare magic = null;
@@ -254,9 +258,14 @@ public class Main {
 		} else if (n % 4 == 2) {
 			magic = new SixMagicSquare(n);
 		}
+		
 		magic.make();
-		magic.print();
+		
+		// StringBuilder로 생성된 문자열을 한 번에 출력
+		bw.write(magic.print());
+		bw.flush();
 		
 		br.close();
+		bw.close();
 	}	
 }
