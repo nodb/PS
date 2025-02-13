@@ -65,10 +65,6 @@ class Main {
             int cx = cur.x;
             int cy = cur.y;
 
-            // 이미 더 작은 비용으로 갱신된 경우
-            if (cost[cy][cx] < cur.cost)
-                continue;
-
             // 4방향 탐색
             for (int d = 0; d < 4; d++) {
                 int nx = cx + dx[d];
