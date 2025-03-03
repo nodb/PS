@@ -1,16 +1,24 @@
 import java.io.*;
 
 public class Main {
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		String s = br.readLine();
-		long sum = 0;
-		long hash = 1;
-		for (int i = 0; i < N; i++) {
-			sum += (s.charAt(i) - 'a' + 1) * hash;
-			hash *= 31;
-		}
-		System.out.println(sum);
-	}
+    static final int r = 31;
+    static final int M = 1234567891;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int L = Integer.parseInt(br.readLine());
+        String s = br.readLine();
+
+        long result = 0;
+        long power = 1;
+
+        for (int i = 0; i < L; i++) {
+            int charValue = s.charAt(i) - 'a' + 1;
+            result = (result + (charValue * power) % M) % M;
+            power = (power * r) % M;
+        }
+
+        System.out.println(result);
+    }
 }
