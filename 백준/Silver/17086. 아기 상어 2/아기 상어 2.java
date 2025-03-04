@@ -30,7 +30,7 @@ public class Main {
 			}
 		}
 
-		bfs(q);
+		bfs();
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
@@ -41,9 +41,9 @@ public class Main {
 		System.out.println(max);
 	}
 
-	private static void bfs(Queue<int[]> queue) {
-		while (!queue.isEmpty()) {
-			int[] cur = queue.poll();
+	private static void bfs() {
+		while (!q.isEmpty()) {
+			int[] cur = q.poll();
 			int y = cur[0], x = cur[1];
 
 			for (int d = 0; d < 8; d++) {
@@ -52,11 +52,11 @@ public class Main {
 
 				if (nx < 0 || ny < 0 || nx >= m || ny >= n)
 					continue;
-				if (dp[ny][nx] != -1) // 이미 방문한 곳
+				if (dp[ny][nx] != -1) // 이미 방문한 곳이면 스킵
 					continue;
 
 				dp[ny][nx] = dp[y][x] + 1;
-				queue.add(new int[] { ny, nx });
+				q.add(new int[] { ny, nx });
 			}
 		}
 	}
