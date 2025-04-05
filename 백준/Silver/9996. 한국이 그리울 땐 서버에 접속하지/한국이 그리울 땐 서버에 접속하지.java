@@ -38,3 +38,9 @@ public class Main {
 		System.out.println(sb);
 	}
 }
+// regex(정규 표현식; Regular expression)
+// - 논리식, 계산식 사용시 부호로 사용
+// - "|", "*", ".", "&", "^"
+//
+// split() 함수 사용시 regex를 문자로 사용시
+// - regex 앞에 \\(백슬래시 두 번) 넣어줘야 문자로 적용
