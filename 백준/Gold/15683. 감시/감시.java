@@ -44,10 +44,6 @@ public class Main {
 				}
 			}
 		}
-//		for (int i = 0; i < N; i++) {
-//			System.out.println(Arrays.toString(arr[i]));
-//		}
-
 		check(0, 0);
 		System.out.println(min);
 	}
@@ -127,11 +123,6 @@ public class Main {
 			}
 		}
 		min = Math.min(min, sum);
-//		System.out.println(min);
-//		for (int i = 0; i < N; i++) {
-//			System.out.println(Arrays.toString(visited[i]));
-//		}
-//		System.out.println();
 	}
 
 	private static void fill_camera(int x, int y, int d) {
