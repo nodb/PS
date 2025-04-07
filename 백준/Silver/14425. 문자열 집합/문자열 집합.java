@@ -10,15 +10,15 @@ public class Main {
 		int m = Integer.parseInt(st.nextToken());
 		int cnt = 0;
 
-		String arr[] = new String[n];
+		HashSet<String> hs = new HashSet<>();
 		for (int i = 0; i < n; i++) {
-			arr[i] = br.readLine();
+			hs.add(br.readLine());
 		}
 
 		for (int i = 0; i < m; i++) {
 			String s = br.readLine();
 			for (int j = 0; j < n; j++) {
-				if (s.equals(arr[j])) {
+				if (hs.contains(s)) {
 					cnt++;
 					break;
 				}
