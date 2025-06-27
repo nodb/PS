@@ -6,34 +6,21 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 
-		if (N < 10) {
-			System.out.println(N);
-			return;
+		List<Long> list = new ArrayList<>();
+
+		// 비트마스킹 : 1~10자리(21억)까지
+		for (int mask = 1; mask < (1 << 10); mask++) {
+			long num = 0;
+			// digit : 비트가 켜져 있는 자리
+			for (int digit = 9; digit >= 0; digit--)
+				// mask 해당 digit가 1이면 = AND 해서 0이 아니면
+				if ((mask & (1 << digit)) != 0)
+					// 해당 수 이어붙이기
+					num = num * 10 + digit;
+			list.add(num);
 		}
 
-		Queue<Long> q = new LinkedList<>();
-		for (long i = 1; i <= 9; i++)
-			q.add(i);
-
-		int cnt = 9;
-
-		while (!q.isEmpty()) {
-			long num = q.poll();
-			int last = (int) (num % 10);
-
-			// 앞보다 작은 수까지만
-			for (int d = 0; d < last; d++) {
-				long next = num * 10 + d;
-				q.add(next);
-				cnt++;
-
-				if (cnt == N) {
-					System.out.println(next);
-					return;
-				}
-			}
-		}
-
-		System.out.println(-1);
+		Collections.sort(list);
+		System.out.println(N >= list.size() ? -1 : list.get(N));
 	}
 }
