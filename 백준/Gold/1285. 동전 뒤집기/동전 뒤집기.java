@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		boolean arr[][] = new boolean[N][N];
+
+		for (int i = 0; i < N; i++) {
+			String s = br.readLine();
+			for (int j = 0; j < N; j++) {
+				if (s.charAt(j) == 'T')
+					arr[i][j] = true;
+			}
+		}
+
+		int min = Integer.MAX_VALUE;
+		// 모든 경우 구하기
+		// 모두 뒤집기 : 가로 2^N, 세로 2^N => 4^N, N은 20 : 시간 초과
+		// - 가로만 뒤집고, 세로는 T, H 개수 중 더 작은 것을 T로 채택
+		for (int i = 0; i < (1 << N); i++) {
+			// 각 경우의 T 개수 세기
+			// - 세로 방향으로 세기
+			int sum = 0;
+			for (int x = 0; x < N; x++) {
+				int cnt = 0;
+				for (int y = 0; y < N; y++) {
+					// arr[y][x] reverse? xor	cnt
+					// T		 T		  F		0
+					// T		 F		  T		+1
+					// F		 T		  T		+1
+					// F		 F		  F		0
+					boolean isReverse = ((i >> y) & 1) == 1;
+					if (isReverse ^ arr[y][x])
+						cnt++;
+				}
+				// 세로는 개수가 더 작은 쪽 선택
+				sum += Math.min(cnt, N - cnt);
+			}
+			min = Math.min(min, sum);
+		}
+		System.out.println(min);
+	}
+}
