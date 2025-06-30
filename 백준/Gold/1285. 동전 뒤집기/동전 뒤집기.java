@@ -5,17 +5,20 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
-		boolean arr[][] = new boolean[N][N];
+		int arr[] = new int[N];
 
 		for (int i = 0; i < N; i++) {
 			String s = br.readLine();
 			for (int j = 0; j < N; j++) {
 				if (s.charAt(j) == 'T')
-					arr[i][j] = true;
+					// 비트마스킹으로 각 세로를 비트마스킹으로 받기
+					// T는 1, H는 0
+					arr[i] |= (1 << j);
 			}
 		}
 
 		int min = Integer.MAX_VALUE;
+
 		// 모든 경우 구하기
 		// 모두 뒤집기 : 가로 2^N, 세로 2^N => 4^N, N은 20 : 시간 초과
 		// - 가로만 뒤집고, 세로는 T, H 개수 중 더 작은 것을 T로 채택
@@ -26,14 +29,11 @@ public class Main {
 			for (int x = 0; x < N; x++) {
 				int cnt = 0;
 				for (int y = 0; y < N; y++) {
-					// arr[y][x] reverse? xor	cnt
-					// T		 T		  F		0
-					// T		 F		  T		+1
-					// F		 T		  T		+1
-					// F		 F		  F		0
-					boolean isReverse = ((i >> y) & 1) == 1;
-					if (isReverse ^ arr[y][x])
-						cnt++;
+					int isT = ((arr[y] >> x) & 1);
+					if (((i >> y) & 1) == 1) {
+						isT ^= 1;
+					}
+					cnt += isT;
 				}
 				// 세로는 개수가 더 작은 쪽 선택
 				sum += Math.min(cnt, N - cnt);
