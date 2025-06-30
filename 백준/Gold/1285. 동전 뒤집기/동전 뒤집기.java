@@ -17,21 +17,27 @@ public class Main {
 			}
 		}
 
+		int temp[] = new int[N]; // 임시 배열
 		int min = Integer.MAX_VALUE;
 
 		// 모든 경우 구하기
 		// 모두 뒤집기 : 가로 2^N, 세로 2^N => 4^N, N은 20 : 시간 초과
 		// - 가로만 뒤집고, 세로는 T, H 개수 중 더 작은 것을 T로 채택
 		for (int i = 0; i < (1 << N); i++) {
+			// 뒤집은 조합 temp에 저장
+			for (int k = 0; k < N; k++)
+				temp[k] = ((i >> k) & 1) == 1 ? ~arr[k] : arr[k];
+
 			// 각 경우의 T 개수 세기
 			// - 세로 방향으로 세기
 			int sum = 0;
 			for (int x = 0; x < N; x++) {
 				int cnt = 0;
 				for (int y = 0; y < N; y++)
-					cnt += ((arr[y] >> x) & 1) ^ ((i >> y) & 1);
+					if (((temp[y] >> x) & 1) == 1)
+						cnt++;
 				// 세로는 개수가 더 작은 쪽 선택
-				sum += cnt > N / 2 ? N - cnt : cnt;
+				sum += Math.min(cnt, N - cnt);
 				if (sum >= min)
 					break;
 			}
