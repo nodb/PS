@@ -37,6 +37,8 @@ public class Main {
 				}
 				// 세로는 개수가 더 작은 쪽 선택
 				sum += Math.min(cnt, N - cnt);
+				if (sum >= min)
+					break;
 			}
 			min = Math.min(min, sum);
 		}
