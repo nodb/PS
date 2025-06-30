@@ -28,15 +28,10 @@ public class Main {
 			int sum = 0;
 			for (int x = 0; x < N; x++) {
 				int cnt = 0;
-				for (int y = 0; y < N; y++) {
-					int isT = ((arr[y] >> x) & 1);
-					if (((i >> y) & 1) == 1) {
-						isT ^= 1;
-					}
-					cnt += isT;
-				}
+				for (int y = 0; y < N; y++)
+					cnt += ((arr[y] >> x) & 1) ^ ((i >> y) & 1);
 				// 세로는 개수가 더 작은 쪽 선택
-				sum += Math.min(cnt, N - cnt);
+				sum += cnt > N / 2 ? N - cnt : cnt;
 				if (sum >= min)
 					break;
 			}
