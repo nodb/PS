@@ -10,8 +10,11 @@ public class Main {
 		int M = Integer.parseInt(st.nextToken());
 		int arr[] = new int[N + 1];
 		st = new StringTokenizer(br.readLine());
-		for (int i = 1; i <= N; i++)
-			arr[i] = arr[i - 1] + Integer.parseInt(st.nextToken());
+		int sum = 0;
+		for (int i = 1; i <= N; i++) {
+			sum += Integer.parseInt(st.nextToken());
+			arr[i] = sum;
+		}
 		while (M-- > 0) {
 			st = new StringTokenizer(br.readLine());
 			int i = Integer.parseInt(st.nextToken());
