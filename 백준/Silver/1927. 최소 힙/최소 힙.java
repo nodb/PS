@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
+		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 
@@ -17,12 +18,13 @@ public class Main {
 			int x = Integer.parseInt(br.readLine());
 			if (x == 0) {
 				if (pq.size() == 0)
-					System.out.println(0);
+					sb.append(0).append('\n');
 				else
-					System.out.println(pq.remove());
+					sb.append(pq.remove()).append('\n');
 			} else {
 				pq.add(x);
 			}
 		}
+		System.out.println(sb);
 	}
 }
