@@ -1,24 +1,19 @@
 import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-
-        int N = Integer.parseInt(br.readLine());
-        boolean[] arr = new boolean[2_000_001]; // -1,000,000 ~ 1,000,000
-
-        for (int i = 0; i < N; i++) {
-            int num = Integer.parseInt(br.readLine());
-            arr[num + 1_000_000] = true;
-        }
-
-        for (int i = 0; i < 2_000_001; i++) {
-            if (arr[i]) {
-                sb.append(i - 1_000_000).append("\n");
-            }
-        }
-
-        System.out.print(sb);
-    }
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		Integer arr[] = new Integer[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = Integer.parseInt(br.readLine());
+		}
+		Arrays.sort(arr);
+		StringBuilder sb = new StringBuilder();
+		for (Integer i : arr) {
+			sb.append(i + "\n");
+		}
+		System.out.println(sb);
+	}
 }
