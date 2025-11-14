@@ -2,29 +2,24 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        
-        int N = Integer.parseInt(br.readLine());
-        Set<String> word = new HashSet<>();
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i < N; i++) {
-            word.add(br.readLine());
-        }
+		Set<String> ts = new TreeSet<>((a, b) -> {
+			if (a.length() != b.length())
+				return a.length() - b.length();
+			return a.compareTo(b);
+		});
 
-        List<String> list = new ArrayList<>(word);
+		for (int i = 0; i < n; i++) {
+			ts.add(br.readLine());
+		}
 
-        Collections.sort(list, (a, b) -> {
-            if (a.length() == b.length()) {
-                return a.compareTo(b); // 사전순 정렬
-            }
-            return a.length() - b.length(); // 길이순 정렬
-        });
-
-        for (String s : list) {
-            sb.append(s).append("\n");
-        }
-        System.out.print(sb);
-    }
+		StringBuilder sb = new StringBuilder();
+		for (String word : ts) {
+			sb.append(word).append('\n');
+		}
+		System.out.print(sb);
+	}
 }
