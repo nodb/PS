@@ -1,0 +1,22 @@
+SELECT MAX_GRADE.SCORE AS SCORE
+       , MAX_GRADE.EMP_NO
+       , EMP.EMP_NAME
+       , EMP.POSITION
+       , EMP.EMAIL
+FROM ( SELECT SUM_GRADE.EMP_NO, SUM_GRADE.SCORE
+       FROM ( SELECT MAX(SUM_SCORE.SCORE) AS SCORE
+              FROM (
+                    SELECT SUM(SCORE) AS SCORE
+                    FROM HR_GRADE
+                    GROUP BY EMP_NO
+                   ) AS SUM_SCORE
+            ) AS MAX_SCORE,
+            ( SELECT EMP_NO, SUM(SCORE) AS SCORE
+              FROM HR_GRADE
+              GROUP BY EMP_NO
+            ) AS SUM_GRADE
+        WHERE MAX_SCORE.SCORE = SUM_GRADE.SCORE
+      ) AS MAX_GRADE,
+      HR_EMPLOYEES EMP
+WHERE
+    MAX_GRADE.EMP_NO = EMP.EMP_NO
